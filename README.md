@@ -1,6 +1,6 @@
 # FastApi template
 - pyenv
-- venv
+- pyenv-virtualenv
 - pip
 - make
 - ruff
@@ -8,8 +8,8 @@
 ```
 install make
 install pyenv
+install pyenv-virtualenv
 install pip
-install venv
 
 pipx install copier
 

@@ -31,8 +31,10 @@ stop: ## stop docker container (use with sudo)
 	docker stop {{service_name}}
 
 .PHONY: init
-init: ## init env and install dependencies
+init: ## init python and env
 	pyenv install {{python_version}} || true
-	pyenv local {{python_version}}
-	python -m venv venv && source ./venv/bin/activate
+	pyenv virtualenv {{service_name}}-{{python_version}} && pyenv activate {{service_name}}-{{python_version}}
+
+.PHONY: install
+install:  ## upgrade pip and install dependencies
 	python -m pip install --upgrade pip && pip install -r requirements.txt
