@@ -31,8 +31,7 @@ stop: ## stop docker container (use with sudo)
 	docker stop {{service_name}}
 
 .PHONY: init
-init: ## init python and env
-	pyenv install {{python_version}} || true
+init: ## create and activate env
 	pyenv virtualenv {{service_name}}-{{python_version}} && pyenv activate {{service_name}}-{{python_version}}
 
 .PHONY: install
