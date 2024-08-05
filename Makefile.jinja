@@ -18,26 +18,26 @@ test: ## run tests with Pytest
 serve: ## run app with Uvicorn
 	uvicorn app:app --host $(host) --port $(port) --reload
 
-.PHONY: build
-build: ## build app image (use with sudo)
+.PHONY: docker_build
+docker_build: ## build app image (use with sudo)
 	docker build . --tag {{service_name}}
 
-.PHONY: run
-run: ## run app container (use with sudo)
+.PHONY: docker_run
+docker_run: ## run app container (use with sudo)
 	docker run -d -p $(port):$(port) --name {{service_name}} {{service_name}}
 
-.PHONY: stop
-stop: ## stop docker container (use with sudo)
+.PHONY: docker_stop
+docker_stop: ## stop docker container (use with sudo)
 	docker stop {{service_name}}
 
-.PHONY: create_env
-create_env: ## create env
+.PHONY: env_create
+env_create: ## create env
 	pyenv virtualenv {{service_name}}-{{python_version}}
 
-.PHONY: upgrade_pip
-upgrade_pip:  ## upgrade pip
+.PHONY: pip_upgrade
+pip_upgrade:  ## upgrade pip
 	python -m pip install --upgrade pip
 
-.PHONY: install
-install:  ## install dependencies
+.PHONY: pip_install
+pip_install:  ## install dependencies
 	pip install -r requirements.txt
