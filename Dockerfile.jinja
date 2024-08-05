@@ -1,0 +1,29 @@
+FROM python:{{python_version}}-slim-bullseye
+
+LABEL maintainer="{{service_author}}"
+LABEL description="{{service_title}}"
+LABEL version="{{service_version}}"
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV APP_PATH=/{{service_name}}
+
+ARG SECRET_KEY
+
+RUN apt-get update &&\
+    apt-get upgrade -y &&\
+    apt-get install -y g++ gcc libpq-dev build-essential python3-dev
+
+WORKDIR $APP_PATH
+
+COPY app $APP_PATH/app 
+COPY requirements.txt $APP_PATH
+
+RUN pip install --no-cache-dir --upgrade pip &&\
+    pip install --no-cache-dir -r requirements.txt
+
+RUN echo "SECRET_KEY=$SECRET_KEY" >> .env
+
+EXPOSE 8000
+
+ENTRYPOINT ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
