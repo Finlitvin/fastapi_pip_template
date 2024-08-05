@@ -34,7 +34,5 @@ stop: ## stop docker container (use with sudo)
 init: ## init env and install dependencies
 	pyenv install {{python_version}} || true
 	pyenv local {{python_version}}
-	python -m venv venv
-	source venv/bin/activate
-	python -m pip install --upgrade pip
-	pip install -r requirements.txt
+	python -m venv venv && source ./venv/bin/activate
+	python -m pip install --upgrade pip && pip install -r requirements.txt
