@@ -6,15 +6,15 @@ lint-dir ?= .
 help: ## Generates a help README
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: lint
+.PHONY: app_lint
 app_lint: ## lint and format code with Ruff
 	ruff check $(lint-dir) --fix ; ruff format $(lint-dir)
 
-.PHONY: test
+.PHONY: app_test
 app_test: ## run tests with Pytest
 	pytest .
 
-.PHONY: serve
+.PHONY: app_serve
 app_serve: ## run app with Uvicorn
 	uvicorn app:app --host $(host) --port $(port) --reload
 
