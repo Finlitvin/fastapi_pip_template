@@ -31,7 +31,7 @@ stop: ## stop docker container (use with sudo)
 	docker stop {{service_name}}
 
 .PHONY: create_env
-create_env: ## create and activate env
+create_env: ## create env
 	pyenv virtualenv {{service_name}}-{{python_version}}
 
 .PHONY: upgrade_pip
