@@ -2,3 +2,4 @@ fastapi
 ruff
 pytest
 uvicorn
+pydantic_settings
