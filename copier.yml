@@ -1,31 +1,25 @@
-service_name:
-    type: str
-    help: What is your service name?
-
 python_version:
     type: str
-    help: Python version
+    help: Python version?
     default: 3.12.4
+
+service_name:
+    type: str
+    help: Service name?
 
 service_version:
     type: str
-    help: Service version
+    help: Service version?
     default: 0.0.1
-
-service_title:
-    type: str
-    help: Title of your project
-    default: "{{service_name}}"
 
 service_author:
     type: str
-    help: Project author
+    help: Service author?
     default: Finlitvin <ros.litvin@gmail.com>
 
-short_description:
+service_description:
     type: str
-    help: A short description of the project
-    default: "{{service_name}}"
+    help: Service description?
 
 _exclude:
   - copier.yml
